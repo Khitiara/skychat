@@ -1,0 +1,7 @@
+apply plugin: 'scala'
+
+dependencies {
+    compile group: 'org.spigotmc', name: 'spigot-api', version: '1.9.4-R0.1-SNAPSHOT'
+    compile 'org.scala-lang:scala-library:2.11.1'
+    compile 'net.milkbowl.vault:VaultAPI:1.5'
+}

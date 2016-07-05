@@ -1,0 +1,3 @@
+rootProject.name = 'skychat'
+
+include ':cord', ':spigot', ':forge'

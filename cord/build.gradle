@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+dependencies {
+    compile group: 'net.md-5', name: 'bungeecord-api', version: '1.9-SNAPSHOT'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.2'
+    compile 'com.cnaude.pircbotx:pircbotx-shaded:2.1.8'
+}
+
+shadowJar {
+    dependencies {
+        include(dependency('com.cnaude.pircbotx:pircbotx-shaded:2.1.8'))
+    }
+}
