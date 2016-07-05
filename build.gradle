@@ -1,4 +1,18 @@
-
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
 allprojects {
     apply plugin: 'java'
     group 'robosky'
@@ -16,10 +30,6 @@ allprojects {
         maven {
             name = 'vault'
             url = 'http://nexus.theyeticave.net/content/repositories/pub_releases/'
-        }
-        maven {
-            name = 'cnaude'
-            url = 'http://cnaude.org/repo/'
         }
     }
     processResources {
