@@ -11,9 +11,13 @@ configurations {
 dependencies {
     compile group: 'net.md-5', name: 'bungeecord-api', version: '1.9-SNAPSHOT'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.2'
-    shade 'org.pircbotx:pircbotx:2.1.8'
+    shade 'org.pircbotx:pircbotx:2.1'
 }
 
 shadowJar {
     configurations = [project.configurations.shade]
+}
+
+processResources {
+    expand project.properties
 }
