@@ -1,15 +1,21 @@
-package robochat
+package skychat
 
+import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.common.config.Configuration
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.Mod.EventHandler
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 
-@Mod(modid = "robochat", name = "RoboChat", version = "@VERSION@", serverSideOnly = true, modLanguage = "scala")
-object RoboChat {
+@Mod(modid = "skychat", name = "SkyChat", version = "@VERSION@", serverSideOnly = true, modLanguage = "scala")
+object SkyChatForge {
+  var conf: Configuration = null
+
   @EventHandler
   def preInit(e: FMLPreInitializationEvent): Unit = {
-    RCNet.init()
-    RCHandlers.init()
+    conf = new Configuration(e.getSuggestedConfigurationFile)
+    SCNet.init()
+    SCHandlers.init()
+    MinecraftForge.EVENT_BUS.register(SCHandlers)
   }
 
   @EventHandler

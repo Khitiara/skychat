@@ -1,3 +1,19 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+evaluationDependsOn(':')
 apply plugin: 'scala'
 apply plugin: "net.minecraftforge.gradle.forge"
 
@@ -8,8 +24,4 @@ minecraft {
     version = "1.10.2-12.18.0.2007-1.10.0"
     runDir = "run"
     mappings = "snapshot_20160518"
-}
-
-dependencies {
-    compile 'org.scala-lang:scala-library:2.11.1'
 }

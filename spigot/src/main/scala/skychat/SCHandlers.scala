@@ -1,0 +1,5 @@
+package skychat
+
+object SCHandlers {
+
+}

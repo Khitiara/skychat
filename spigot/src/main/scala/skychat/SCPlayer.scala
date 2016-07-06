@@ -1,0 +1,5 @@
+package skychat
+
+class SCPlayer {
+
+}
