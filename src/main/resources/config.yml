@@ -1,0 +1,16 @@
+format:
+  ingame:
+    chat: [G]{prefix}{name}{suffix}&r:
+    action: [G] * {prefix}{name}{suffix}&r
+  irc:
+    chat: [I]{name}:
+    action: [I] * {name}
+
+irc:
+  server: example.com
+  port: 5555
+  channels:
+    - '#example'
+  sasl:
+    user: Example
+    pass: SomePass

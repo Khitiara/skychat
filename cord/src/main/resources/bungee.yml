@@ -1,4 +1,0 @@
-name: ${rootProject.name}
-version: ${project.version}
-author: RoboSky
-main: skychat.SkyChatBungee

@@ -1,3 +1,0 @@
-format:
-  chat: [{server}]{prefix}{name}{suffix}&r:
-  action: [{server}] * {prefix}{name}{suffix}&r

@@ -1,0 +1,13 @@
+configurations {
+    scalaCompilerPlugin
+}
+
+dependencies {
+    scalaCompilerPlugin "org.scalamacros:paradise_2.11.1:2.1.0"
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = [
+            "-Xplugin:$configurations.scalaCompilerPlugin.asPath"
+    ]
+}
