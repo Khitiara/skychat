@@ -1,10 +1,17 @@
 format:
   ingame:
-    chat: [G]{prefix}{name}{suffix}&r:
-    action: [G] * {prefix}{name}{suffix}&r
+    chat: [G]{prefix}{name}&r: {msg}
+    action: [G] * {prefix}{name}&r {msg}
   irc:
-    chat: [I]{name}:
-    action: [I] * {name}
+    chat: [I]{name}: {msg}
+    action: [I] * {name} {msg}
+  msg:
+    rx:
+      irc: [[I]{name} -> &dYou&r]: {msg} #unused atm
+      game: [[G]{prefix}{name} -> &dYou&r]: {msg}
+    echo:
+      irc: [&dYou&r -> [I]{name}]: {msg} #unused atm
+      game: [&dYou&r -> [G]{prefix}{name}]: {msg}
 
 irc:
   server: example.com

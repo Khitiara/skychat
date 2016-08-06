@@ -46,8 +46,13 @@ object PlayerData extends Listener {
     }
   }
 
-  def getPlayer(id: UUID) = players(id)
+  def getPlayer(id: UUID) = players.get(id)
   def getPlayer(p: OfflinePlayer) = getPlayer(p.getUniqueId)
+
+  def update(p: Player): Player = {
+    players(p.id) = p
+    p
+  }
 
   @EventHandler
   def onJoin(e: PlayerJoinEvent): Unit = {
