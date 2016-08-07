@@ -14,6 +14,7 @@ class SkyChat extends JavaPlugin {
       getServer.getPluginManager.disablePlugin(this)
       return
     }
+    SkyChatIrc.init(getConfig.getConfigurationSection("irc"))
     SkyChat.inst = this
     SkyChat.chat = getServer.getServicesManager.getRegistration(classOf[Chat]).getProvider
     PlayerData.init()

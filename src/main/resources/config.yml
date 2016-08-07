@@ -14,10 +14,13 @@ format:
       game: [&dYou&r -> [G]{prefix}{name}]: {msg}
 
 irc:
-  server: example.com
+  host: example.com
+  nick: SkyChat
+  name: SkyChat IRC Bot
   port: 5555
   channels:
     - '#example'
   sasl:
+    enabled: true
     user: Example
     pass: SomePass

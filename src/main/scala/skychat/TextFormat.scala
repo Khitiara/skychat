@@ -27,6 +27,7 @@ object TextFormat {
 
   final class Template private(parts: Seq[Part]) {
     def unparse(vars: Map[String, Any]): String = parts.map(_.unparse(vars)).mkString
+    def apply(vars: Map[String, Any]): String = unparse(vars)
   }
 
   object Template {
