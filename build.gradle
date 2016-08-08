@@ -24,8 +24,6 @@ repositories {
     }
 }
 
-apply from: 'gradle/scalaHelper.gradle'
-
 group 'robosky'
 version '1.0'
 

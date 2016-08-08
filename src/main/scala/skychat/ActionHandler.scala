@@ -1,20 +1,16 @@
 package skychat
 
+import org.bukkit.{Bukkit, OfflinePlayer}
 import org.bukkit.entity.Player
-import org.bukkit.event.player.AsyncPlayerChatEvent
-import org.bukkit.event.{EventHandler, EventPriority, Listener}
 import skychat.irc.SkyChatIrc
 
-object ChatListener extends Listener {
+object ActionHandler {
+  def handle(player: OfflinePlayer, s: String): Boolean = handle(Bukkit.getPlayer(player.getUniqueId), s)
+
   val colorPattern = """(?i)§[0-9A-FR]""".r
   val magicPattern = """(?i)§[K-O]""".r
-
-  @EventHandler(priority = EventPriority.HIGHEST)
-  def chat(e: AsyncPlayerChatEvent): Unit = {
-    val p: Player = e.getPlayer
-    PlayerData.Player.update(p)
-
-    var msg = e.getMessage
+  def handle(p: Player, s: String): Boolean = {
+    var msg = s
 
     if (!p.hasPermission("robochat.chat.color")) {
       msg = colorPattern.replaceAllIn(msg, "")
@@ -23,13 +19,16 @@ object ChatListener extends Listener {
       msg = magicPattern.replaceAllIn(msg, "")
     }
 
-    val fmt = TextFormat.ingameChat(Map(
+    val fmt = TextFormat.ingameAction(Map(
       "prefix" -> SkyChat.chat.getPlayerPrefix(p),
       "name" -> p.getDisplayName,
       "msg" -> msg
     ))
-    e.setFormat(fmt)
 
+    Bukkit.broadcastMessage(fmt)
     SkyChatIrc.broadcast(fmt)
+
+    true
   }
+
 }

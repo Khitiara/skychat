@@ -11,9 +11,6 @@ commands:
         usage: /msg [player] [msg]
         description: Send a private message to a player
         aliases: ['/w']
-    afk:
-        usage: /afk
-        description: Toggle afk mode
     me:
         usage: /me [msg]
         description: Send an action message

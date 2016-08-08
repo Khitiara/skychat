@@ -1,4 +1,4 @@
-package skychat
+package skychat.irc
 
 import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
@@ -6,6 +6,7 @@ import org.pircbotx.cap.SASLCapHandler
 import org.pircbotx.hooks.ListenerAdapter
 import org.pircbotx.hooks.events._
 import org.pircbotx.{PircBotX, User, Configuration => IrcConf}
+import skychat.TextFormat
 
 import scala.collection.JavaConverters._
 
@@ -18,9 +19,11 @@ object SkyChatIrc extends ListenerAdapter {
 
   var bot: PircBotX = _
 
-  private var cmds: PartialFunction[String, (String, User) => Unit] = PartialFunction.empty
+  private var cmds: PartialFunction[String, (String, MessageEvent) => Unit] = PartialFunction.empty
 
-  def listen(f: PartialFunction[String, (String, User) => Unit]) = cmds = cmds.orElse(f)
+  def listen(f: PartialFunction[String, (String, MessageEvent) => Unit]) = cmds = cmds.orElse(f)
+
+  def listenTo(name: String)(f: (String, MessageEvent) => Unit) = listen(Map(name -> f))
 
   def buildBot(): Unit = {
     var config = new IrcConf.Builder()
@@ -41,7 +44,7 @@ object SkyChatIrc extends ListenerAdapter {
   val cmdPat = """\?([a-cA-C]+)(.*)""".r
 
   override def onMessage(event: MessageEvent): Unit = event.getMessage match {
-    case cmdPat(cmd, args) => cmds.runWith(_ (args, event.getUser))(cmd)
+    case cmdPat(cmd, args) => cmds.runWith(_ (args, event))(cmd)
     case msg =>
       Bukkit.broadcastMessage(TextFormat.ircChat(Map(
         "name" -> event.getUser.getNick,
